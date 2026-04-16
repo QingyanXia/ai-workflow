@@ -1,11 +1,12 @@
 from app.core.llm import call_llm
+from app.models.task import Task
 
-def run_task(user_input: str) -> str:
-    """
-    最小任务执行流程：
-    input -> LLM -> output
-    """
+def run_task(task: Task) -> Task:
+    task.status = "running"
 
-    result = call_llm(user_input)
+    result = call_llm(task.input)
 
-    return result
+    task.output = result
+    task.status = "finished"
+
+    return task
