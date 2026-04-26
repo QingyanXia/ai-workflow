@@ -18,7 +18,6 @@ Task:
 {task_input}
 """
     response = call_llm(prompt)
-
     steps = []
     for line in response.split("\n"):
         line = line.strip()
